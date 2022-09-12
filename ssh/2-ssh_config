@@ -1,0 +1,7 @@
+# Read more about SSH config files: https://linux.die.net/man/5/ssh_config
+Host RemoteHost
+    HostName 1684ae506b98.26faa458.hbtn-cod.io
+    User 1684ae506b98
+    Port 22
+    IdentityFile ~/.ssh/school
+    PasswordAuthentication no
