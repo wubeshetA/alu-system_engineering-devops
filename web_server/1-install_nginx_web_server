@@ -28,5 +28,4 @@ else
     echo "Can't install nginx"
     exit 1
 fi
-# echo "SERVER IS SET UP SUCCESSFULLY!!!"
-exit 0
+echo "Holberton School"
