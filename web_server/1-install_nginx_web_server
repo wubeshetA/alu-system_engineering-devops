@@ -1,5 +1,32 @@
 #!/usr/bin/env bash
 # Script that install nginx server and write content to the root.
+sudo apt-get -y update && \
 sudo apt-get -y install nginx
-sudo chown -R $USER:$USER /var/www/html
-echo "Holberton School!" > /var/www/html/index.html
+if [ $? -eq 0 ];
+then
+    sudo chown -R $USER:$USER /etc/nginx/nginx.conf
+    sudo echo -e \
+    "http {
+        server {
+            listen 80;
+            location / {
+                root /var/www/wube.site
+            }
+        }
+    }" > /etc/nginx/nginx.conf
+   sudo mkdir -p /var/www/wube.site
+   sudo chown -R $USER:$USER /var/www/wube.site
+   sudo echo "Holberton School" > /var/www/wube.site/index.html
+
+    sudo service nginx start
+    if [ $? -ne 0 ]
+    then
+        echo  "Can't start nginx"
+        exit 1
+    fi
+else
+    echo "Can't install nginx"
+    exit 1
+fi
+# echo "SERVER IS SET UP SUCCESSFULLY!!!"
+exit 0
