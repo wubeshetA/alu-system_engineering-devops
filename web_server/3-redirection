@@ -3,8 +3,8 @@
 # accessing the /redirect_me page.
 sudo apt update -y
 sudo apt install nginx -y
-# store content to be written
 
+# store configuration content
 new_config=\
 "server {
         listen 80 default_server;
@@ -20,8 +20,5 @@ new_config=\
         }
 }
 "
-# put the the redirect configuration after the server_name directive
-# sudo sed -i "/server_name _;/a $content" /etc/nginx/sites-available/default
-# sudo sed -i "/server_name _;/a $content" /etc/nginx/sites-enabled/default
 echo "$new_config" > /etc/nginx/sites-available/default
 sudo service nginx restart
