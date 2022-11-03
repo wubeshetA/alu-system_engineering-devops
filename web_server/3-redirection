@@ -8,5 +8,6 @@ sudo apt install nginx -y
 content="location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }"
 
 # put the the redirect configuration after the server_name directive
-sudo sed "/server_name _;/a $content" /etc/nginx/sites-enabled/default
+sudo sed -i "/server_name _;/a $content" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a $content" /etc/nginx/sites-enabled/default
 sudo service nginx restart
