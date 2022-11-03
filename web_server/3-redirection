@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+# script that install nginx and configure it to redirect to another page when
+# accessing the /redirect_me page.
+sudo apt update -y
+sudo apt install nginx -y
+
+# store content to be written
+content="location /redirect_me { return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4; }"
+
+# put the the redirect configuration after the server_name directive
+sudo sed "/server_name _;/a $content" /etc/nginx/sites-enabled/default
+sudo service nginx restart
