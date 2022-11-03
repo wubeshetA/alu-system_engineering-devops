@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# script that install nginx and configure it to return custom 404 page not found erorr
+sudo apt update -y
+sudo apt install nginx -y
+echo "Ceci n'est pas une page" > /var/www/html/error404.html
+# store configuration content
+new_config=\
+"server {
+        listen 80 default_server;
+        listen [::]:80 default_server;
+        root /var/www/html;
+        index index.html index.htm index.nginx-debian.html;
+        error_page 404 /error404.html;
+        server_name _;
+        location / {
+                try_files \$uri \$uri/ =404;
+        }
+}
+"
+
+echo "$new_config" > /etc/nginx/sites-available/default
+sudo service nginx restart
