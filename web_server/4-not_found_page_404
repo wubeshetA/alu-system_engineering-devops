@@ -2,7 +2,7 @@
 # script that install nginx and configure it to return custom 404 page not found erorr
 sudo apt update -y
 sudo apt install nginx -y
-echo "Ceci n'est pas une page" > /var/www/html/error404.html
+echo "Ceci n'est pas une page" > /var/www/html/error404.html &&
 # store configuration content
 new_config=\
 "server {
@@ -17,6 +17,6 @@ new_config=\
         }
 }
 "
-
+sudo chown -R "$USER":"$USER" /etc/nginx/sites-available/default
 echo "$new_config" > /etc/nginx/sites-available/default
 sudo service nginx restart
