@@ -1,9 +1,7 @@
 #!/usr/bin/env bash
-# Install and configure haproxy.
-
-# update system
+# This script install and configure haproxy.
+# update system and install haproxy
 sudo apt update
-# install haproxy
 sudo apt install haproxy -y
 load_balance_config=\
 "frontend haproxy_inbound
@@ -14,6 +12,10 @@ backend haproxy_httpd
         server 4808-web-01 54.163.68.20
         server 4808-web-02 54.226.116.83
 "
+# enable haproxy to be managed by init script
+sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
 # add the new configuration to the the haproxy.conf file
-sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
-echo $load_balance_config >> /etc/haproxy/haproxy.cfg
+
+# sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
+sudo echo $load_balance_config >> /etc/haproxy/haproxy.cfg
+sudo service haproxy start
