@@ -15,7 +15,7 @@ backend haproxy_httpd
         server 4808-web-02 54.226.116.83
 "
 # enable haproxy to be managed by init script
-sudo sed -i "s/ENABLED=0/ENABLED=1/" /etc/default/haproxy
+sudo sed -i "ENABLED=1" >> /etc/default/haproxy
 # add the new configuration to the the haproxy.conf file
 
 # sudo chown -R "$USER":"$USER" /etc/haproxy/haproxy.cfg
