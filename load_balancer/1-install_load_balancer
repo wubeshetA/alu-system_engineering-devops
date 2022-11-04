@@ -7,8 +7,10 @@ load_balance_config=\
 "frontend haproxy_inbound
         bind *:80
         default_backend haproxy_httpd
+        mode http
 backend haproxy_httpd
         balance roundrobin
+        mode http
         server 4808-web-01 54.163.68.20
         server 4808-web-02 54.226.116.83
 "
