@@ -1,6 +1,13 @@
 #!/usr/bin/env bash
-# a script that configure Apache server with docker
+# start apache2 server
+service apache2 start
 
+# ========== The following commented script is a first attempt to the challenge
+# ========== However, later, I figured out that the question doesn't ask to 
+# ========== install and configure it from scratch.
+
+# This script install apache2 in a docker container and configure it so that 
+# it can return a 'Hello Holberton' when quarrying the root of the server.
 # docker_content='FROM ubuntu
 # ENV DEBIAN_FRONTEND=noninteractive
 # RUN apt-get update
@@ -19,4 +26,3 @@
 # # change the content of the default apache server to 'Hello Holberton'.
 # docker exec -ti wubecontainer sh -c "echo 'Hello Holberton' > /var/www/html/index.html"
 # ======================================
-service apache2 start
