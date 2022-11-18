@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# a script that configure Apache server with docker
+
+docker_content=\
+"FROM ubuntu
+ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update
+RUN apt-get install apache2 -y
+RUN apt-get install apache2-utils -y
+RUN apt-get clean
+EXPOSE 80
+CMD [\"apache2ctl\",\"-D\",\"FOREGROUND\"]
+"
+# write the docker file
+echo "$docker_content" > Dockerfile
+# create docker image from the docker file
+docker build -t="wubeserver" .
+# run a container from the docker image
+docker run --name wubecontainer -p 8080:80 -d -ti wubeserver
+# change the content of the default apache server to 'Hello Holberton'.
+docker exec -ti wubecontainer sh -c "echo 'Hello Holberton' > /var/www/html/index.html"
