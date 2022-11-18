@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 # a script that configure Apache server with docker
 
-docker_content=\
-"FROM ubuntu
+docker_content='FROM ubuntu
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN apt-get install apache2 -y
@@ -10,7 +9,7 @@ RUN apt-get install apache2-utils -y
 RUN apt-get clean
 EXPOSE 80
 CMD [\"apache2ctl\",\"-D\",\"FOREGROUND\"]
-"
+'
 # write the docker file
 echo "$docker_content" > Dockerfile
 # create docker image from the docker file
