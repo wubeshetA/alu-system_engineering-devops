@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 # start nginx
+sudo apt-get purge nginx nginx-common
+sudo apt-get autoremove
+sudo apt update -y
+sudo apt install nginx -y
 sudo services nginx restart
