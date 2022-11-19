@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
-# start nginx
-sudo apt-get purge nginx nginx-common
-sudo apt-get autoremove
-sudo apt update -y
-sudo apt install nginx -y
-sudo services nginx restart
+# fix the bug on server to make it listen on port 80
+sed -i 's/ipv6only=on//' /etc/nginx/sites-available/default
+# create symbolic link
+rm /etc/nginx/sites-enabled/default
+ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+sudo service nginx restart
