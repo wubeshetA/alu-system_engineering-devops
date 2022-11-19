@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
 # short version of the first task in the current directory
-sudo sed -i "s/sites-enabled/sites-available/" /etc/nginx/nginx.conf
-nginx -s reload
+sudo sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default /etc/nginx/sites-available/default
+sudo service nginx restart
+sudo pkill -o nginx
