@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# short version of the first task in the current directory
+sed -i 's/sites-enabled/sites-available' /etc/nginx/nginx.conf
+nginx -s reload
